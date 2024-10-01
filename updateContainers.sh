@@ -83,7 +83,7 @@ sudo docker run -d \
 	--runtime=runc \
 hotio/readarr
 
-echo "Starting bazarr"
+echo "Starting bazarr..."
 sudo docker run -d \
 	--name=bazarr \
 	--hostname=6dc2eef9524a \
@@ -96,7 +96,7 @@ sudo docker run -d \
 	--runtime=runc \
 hotio/bazarr:latest
 
-echo "Starting qbittorrent"
+echo "Starting qbittorrent..."
 sudo docker run -d \
 	--name qbittorrent \
 	-e VPN_TYPE=wireguard \
