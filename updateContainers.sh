@@ -2,7 +2,7 @@
 
 #stop all containers
 echo "Stopping all containers..."
-docker stop prowlarr; docker stop overseerr; docker stop tautulli; sudo docker stop qbittorrent; sudo docker stop bazarr; sudo docker stop readarr; sudo docker stop plex; sudo docker stop sonarr; sudo docker stop radarra
+docker stop prowlarr; docker stop overseerr; docker stop tautulli; sudo docker stop qbittorrent; sudo docker stop bazarr; sudo docker stop readarr; sudo docker stop plex; sudo docker stop sonarr; sudo docker stop radarr
 
 #uodate all containers
 echo "Updating all containers..."
