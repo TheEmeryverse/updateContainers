@@ -16,7 +16,7 @@ sudo docker pull lscr.io/linuxserver/plex:latest
 sudo docker pull hotio/sonarr:latest
 sudo docker pull hotio/radarr:latest
 
-echo "Deleting all containers"
+echo "Deleting all containers..."
 docker rm prowlarr; docker rm overseerr; docker rm tautulli; sudo docker rm qbittorrent; sudo docker rm bazarr; sudo docker rm readarr; sudo docker rm plex; sudo docker rm sonarr; sudo docker rm radarr
 
 
