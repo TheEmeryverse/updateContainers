@@ -14,7 +14,7 @@ sudo docker pull hotio/bazarr:latest
 sudo docker pull hotio/readarr
 sudo docker pull lscr.io/linuxserver/plex:latest
 sudo docker pull hotio/sonarr:latest
-sudo docker pull hotio/radarr:latest
+sudo docker pull lscr.io/linuxserver/radarr:latest
 
 echo "Deleting all containers..."
 docker rm prowlarr; docker rm overseerr; docker rm tautulli; sudo docker rm qbittorrent; sudo docker rm bazarr; sudo docker rm readarr; sudo docker rm plex; sudo docker rm sonarr; sudo docker rm radarr
@@ -27,8 +27,6 @@ echo "Starting containers with updated images..."
 echo "Starting radarr..."
 sudo docker run -d \
 	--name=radarr \
-	--hostname=2d9eea69def0 \
-	--mac-address=02:42:ac:11:00:06 \
 	--volume=/home/hudson/radarr/config:/config \
 	--volume=/home/hudson/data/torrents:/downloads \
 	--volume=/home/hudson/data/media/movies:/movies \
@@ -36,7 +34,7 @@ sudo docker run -d \
 	-p 7878:7878 \
 	--restart=unless-stopped \
 	--runtime=runc \
-hotio/radarr:latest
+lscr.io/linuxserver/radarr:latest
 
 echo "Starting sonarr..."
 sudo docker run -d \
