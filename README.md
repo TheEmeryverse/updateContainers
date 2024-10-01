@@ -1,2 +1,2 @@
 # updateContainers
- Automatically uodate all containers and redeploy
+ Automatically update all containers and redeploy
