@@ -1,4 +1,5 @@
 #! /bin/bash
-updateContainers
+cd
+cd updateContainers
 git pull
 bash ./updateContainers.sh
