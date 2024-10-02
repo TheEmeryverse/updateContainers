@@ -3,7 +3,7 @@
 
 #stop all root containers
 echo "Stopping all running ROOT containers..."
-docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; socker stop radarr
+docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr
 
 #delete ROOT containers
 echo "Deleting all ROOT containers"
