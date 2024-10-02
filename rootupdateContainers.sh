@@ -10,12 +10,12 @@ echo "Deleting all ROOT containers"
 docker rm qbittorrent; docker rm bazarr; docker rm readarr; docker rm plex; docker rm sonarr; docker rm radarr
 
 echo "Pulling all images for ROOT containers..."
-sudo docker pull trigus42/qbittorrentvpn:latest
-sudo docker pull hotio/bazarr:latest
-sudo docker pull hotio/readarr
-sudo docker pull lscr.io/linuxserver/plex:latest
-sudo docker pull hotio/sonarr:latest
-sudo docker pull lscr.io/linuxserver/radarr:latest
+docker pull trigus42/qbittorrentvpn:latest
+docker pull hotio/bazarr:latest
+docker pull hotio/readarr
+docker pull lscr.io/linuxserver/plex:latest
+docker pull hotio/sonarr:latest
+docker pull lscr.io/linuxserver/radarr:latest
 
 echo "Deploying all ROOT containers with updated images..."
 
@@ -51,7 +51,7 @@ docker run -d \
 hotio/bazarr:latest
 
 echo "Starting readarr..."
-sudo docker run -d \
+docker run -d \
 	--name=readarr \
 	--env=TZ=Etc/UTC \
 	--volume=/home/hudson/data/media/audiobooks:/audiobooks \
@@ -65,7 +65,7 @@ sudo docker run -d \
 hotio/readarr
 
 echo "Starting plex..."
-sudo docker run -d \
+docker run -d \
 	--name=plex \
 	--net=host \
 	-e TZ=America/Chicago \
@@ -82,7 +82,7 @@ sudo docker run -d \
 lscr.io/linuxserver/plex:latest
 
 echo "Starting sonarr..."
-sudo docker run -d \
+docker run -d \
 	--name=sonarr \
 	--hostname=c8a71a008167 \
 	--mac-address=02:42:ac:11:00:05 \
@@ -96,7 +96,7 @@ sudo docker run -d \
 hotio/sonarr:latest
 
 echo "Starting radarr..."
-sudo docker run -d \
+docker run -d \
 	--name=radarr \
 	--volume=/home/hudson/radarr/config:/config \
 	--volume=/home/hudson/data/torrents:/downloads \
