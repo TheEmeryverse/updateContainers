@@ -2,4 +2,4 @@
 cd
 cd updateContainers
 git pull
-bash ./updateContainers.sh
+bash updateContainers.sh
