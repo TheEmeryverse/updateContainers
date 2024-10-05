@@ -18,7 +18,7 @@ docker run \
 	--restart=unless-stopped \
 	lscr.io/linuxserver/qbittorrent
 
-docker pull qmcgaw/gluetun
+docker pull qmcgaw/gluetun:latest
 
 docker run -it --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
@@ -28,7 +28,7 @@ docker run -it --rm --cap-add=NET_ADMIN \
 	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
 	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
 	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
-	qmcgaw/gluetun
+	qmcgaw/gluetun:latest
 
 # [Interface]
 # Bouncing = 2
