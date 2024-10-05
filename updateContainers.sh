@@ -8,7 +8,7 @@ docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop q
 #uodate all containers
 echo "Updating all containers..."
 docker pull lscr.io/linuxserver/overseerr:latest
-docker pull tautulli/tautulli:latest
+docker pull tautulli/tautulli
 docker pull lscr.io/linuxserver/prowlarr:
 # docker pull trigus42/qbittorrentvpn:latest
 docker pull lscr.io/linuxserver/qbittorrent:latest
@@ -53,7 +53,7 @@ docker run -d \
 	-v /home/containerConfigs/tautulli/config:/config \
 	-e TZ=America/Chicago \
 	-p 8181:8181 \
-tautulli/tautulli:latest
+tautulli/tautulli
 
 echo "Starting bazarr..."
 docker run -d \
@@ -132,9 +132,10 @@ docker run -d --rm --cap-add=NET_ADMIN \
 	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
 	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
 	-p 8080:8080 \
+	-p 8999:8999 \
 qmcgaw/gluetun:latest
 
-docker run \
+docker run -d \
 	--name=qbittorrent \
 	-e TZ=America/Chicago \
 	--network=container:gluetun \
