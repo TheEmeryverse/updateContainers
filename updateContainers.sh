@@ -141,6 +141,7 @@ lscr.io/linuxserver/radarr:latest
 
 docker run -d \
 	--name=flood \
+	-e HOME=/config \
 	-v /home/containerConfigs/flood/config:/config \
 	-v /home/containerConfigs/flood/data:/data \
 	-p 3000:3000 \
