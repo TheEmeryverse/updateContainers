@@ -143,9 +143,10 @@ docker run -d \
 	--name=flood \
 	-e HOME=/config \
 	-v /home/containerConfigs/flood/config:/config \
-	-v /home/containerConfigs/flood/data:/data \
+	-v /mnt/plexNAS/torrents:/data \
 	-p 3000:3000 \
 	-e FLOOD_OPTION_port=3000 \
+	--restart=unless-stopped \
 	jesec/flood:master \
 	--allowedpath /data
 
