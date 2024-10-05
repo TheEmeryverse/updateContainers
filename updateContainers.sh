@@ -1,5 +1,5 @@
 #! /bin/bash
-#shell script to update and redeploy all non-root containers
+#shell script to update and redeploy all containers
 
 #stop all containers
 echo "Stopping all containers..."
@@ -10,7 +10,6 @@ echo "Updating all containers..."
 docker pull lscr.io/linuxserver/overseerr:latest
 docker pull tautulli/tautulli
 docker pull lscr.io/linuxserver/prowlarr:
-# docker pull trigus42/qbittorrentvpn:latest
 docker pull lscr.io/linuxserver/qbittorrent:latest
 docker pull lscr.io/linuxserver/bazarr:latest
 docker pull lscr.io/linuxserver/readarr:develop
@@ -123,6 +122,7 @@ docker run -d \
 	--runtime=runc \
 lscr.io/linuxserver/radarr:latest
 
+echo "Starting qbittorrent..."
 docker run -d --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
 	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
@@ -135,6 +135,7 @@ docker run -d --rm --cap-add=NET_ADMIN \
 	-p 8999:8999 \
 qmcgaw/gluetun:latest
 
+echo "Starting gluetun..."
 docker run -d \
 	--name=qbittorrent \
 	-e TZ=America/Chicago \
