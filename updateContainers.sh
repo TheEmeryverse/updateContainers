@@ -139,6 +139,8 @@ docker run -d \
 	--runtime=runc \
 lscr.io/linuxserver/radarr:latest
 
+# flood is still broken!!
+
 # docker run -d \
 	# --name=flood \
 	# -e HOME=/config \
