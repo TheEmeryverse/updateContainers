@@ -139,7 +139,6 @@ docker run -d \
 	--name=qbittorrent \
 	-e TZ=America/Chicago \
 	--network=container:gluetun \
-	-e WEBUI_PASSWORD=@elLazo4932@ \
 	-e WEBUI_PORT=8080 \
 	-v /home/containerConfigs/qbittorrent/config:/config \
 	-v /mnt/plexNAS/torrents:/downloads \
