@@ -3,9 +3,21 @@ docker stop qbittorrentTest; docker stop gluetun
 docker rm qbittorrentTest; docker rm gluetun
 
 
+docker pull qmcgaw/gluetun:latest
+
+docker run -d --rm --cap-add=NET_ADMIN \
+	--name=gluetun \
+	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
+	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
+	-e WIREGUARD_ENDPOINT_PORT=51820 \
+	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
+	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
+	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
+	qmcgaw/gluetun:latest
+
 docker pull lscr.io/linuxserver/qbittorrent
 
-docker run -d \
+docker run \
 	--name=qbittorrentTest \
 	-e TZ=America/Chicago \
 	-e WEBUI_PASSWORD=@elLazo4932@ \
@@ -18,17 +30,7 @@ docker run -d \
 	--restart=unless-stopped \
 	lscr.io/linuxserver/qbittorrent
 
-docker pull qmcgaw/gluetun:latest
 
-docker run -it --rm --cap-add=NET_ADMIN \
-	--name=gluetun \
-	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
-	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
-	-e WIREGUARD_ENDPOINT_PORT=51820 \
-	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
-	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
-	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
-	qmcgaw/gluetun:latest
 
 # [Interface]
 # Bouncing = 2
