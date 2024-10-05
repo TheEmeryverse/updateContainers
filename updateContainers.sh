@@ -57,6 +57,7 @@ tautulli/tautulli:latest
 echo "Starting qbittorrent..."
 docker run -d \
 	--name qbittorrent \
+	--network=host \
 	-e VPN_TYPE=wireguard \
 	-e WEBUI_PASSWORD=@elLazo4932@ \
 	-e TZ=America/Chicago \
