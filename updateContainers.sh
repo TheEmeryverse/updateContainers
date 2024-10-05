@@ -131,9 +131,7 @@ docker run -d --rm --cap-add=NET_ADMIN \
 	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
 	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
 	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
-	-p 8090:8090 \
-	-p 9050:9050/udp \
-	-p 9050:9050 \
+	-p 8080:8080 \
 qmcgaw/gluetun:latest
 
 docker run \
@@ -141,7 +139,7 @@ docker run \
 	-e TZ=America/Chicago \
 	--network=container:gluetun \
 	-e WEBUI_PASSWORD=@elLazo4932@ \
-	-e WEBUI_PORT=8090 \
+	-e WEBUI_PORT=8080 \
 	-v /home/containerConfigs/qbittorrent/config:/config \
 	-v /mnt/plexNAS/torrents:/downloads \
 	--restart=unless-stopped \
