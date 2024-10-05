@@ -27,8 +27,6 @@ echo "Starting containers with updated images..."
 echo "Starting prowlarr..."
 docker run -d \
 	--name=prowlarr \
-	--hostname=a4403accf5d6 \
-	--mac-address=02:42:ac:11:00:04 \
 	--env=TZ=America/Chicago \
 	--volume=/home/containerConfigs/prowlarr/data:/config \
 	-p 9696:9696 \
@@ -39,8 +37,7 @@ lscr.io/linuxserver/prowlarr:latest
 echo "Starting overseerr..."
 docker run -d \
 	--name=overseerr \
-	--mac-address=02:42:ac:11:00:05 \
-	-e TZ=Etc/UTC \
+	-e TZ=America/Chicago \
 	-p 5055:5055 \
 	-v /home/containerConfigs/overseerr/appdata/config:/config \
 	--restart unless-stopped \
@@ -76,26 +73,24 @@ trigus42/qbittorrentvpn:latest
 echo "Starting bazarr..."
 docker run -d \
 	--name=bazarr \
-	--hostname=6dc2eef9524a \
-	--mac-address=02:42:ac:11:00:0a \
 	--volume=/mnt/plexNAS/media/tv:/tv \
 	--volume=/mnt/plexNAS/media/movies:/movies \
 	--volume=/home/containerConfigs/bazarr/config:/config \
 	--network=bridge \
+	-e TZ=America/Chicago \
 	-p 6767:6767 \
-	--restart=no \
+	--restart=unless-stopped \
 	--runtime=runc \
 hotio/bazarr:latest
 
 echo "Starting readarr..."
 docker run -d \
 	--name=readarr \
-	--env=TZ=Etc/UTC \
+	--env=TZ=America/Chicago \
 	--volume=/mnt/plexNAS/media/audiobooks:/audiobooks \
 	--volume=/mnt/plexNAS/torrents/audiobooks:/downloads/audiobooks \
 	--volume=/home/containerConfigs/readarr/config:/config \
 	--network=bridge \
-	--workdir=/ \
 	-p 8787:8787 \
 	--restart=unless-stopped \
 	--runtime=runc \
@@ -121,12 +116,11 @@ lscr.io/linuxserver/plex:latest
 echo "Starting sonarr..."
 docker run -d \
 	--name=sonarr \
-	--hostname=c8a71a008167 \
-	--mac-address=02:42:ac:11:00:05 \
 	--volume=/home/containerConfigs/sonarr/config:/config \
 	--volume=/mnt/plexNAS/torrents/:/downloads \
 	--volume=/mnt/plexNAS/media/tv:/tv \
 	--network=bridge \
+	-e TZ=America/Chicago \
 	-p 8989:8989 \
 	--restart=unless-stopped \
 	--runtime=runc \
