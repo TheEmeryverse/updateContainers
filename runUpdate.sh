@@ -1,5 +1,4 @@
 #! /bin/bash
-cd
-cd updateContainers
+cd /home/scripts/updateContainers
 git pull
 bash updateContainers.sh
