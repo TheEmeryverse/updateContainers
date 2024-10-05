@@ -152,15 +152,15 @@ lscr.io/linuxserver/radarr:latest
 	# jesec/flood:master \
 	# --allowedpath /data
 
-docker run -d --rm \
-	--name flood \
-	--hostname flood \
-	-e HOME=/config \
-	-v /home/containerConfigs/flood/config:/config \
-	-v /mnt/plexNAS/torrents:/data \
-	-p 0.0.0.0:3000:3000 \
-	jesec/flood \
-	--port 3000 \
-	--allowedpath /data
+# docker run -d --rm \
+	# --name flood \
+	# --hostname flood \
+	# -e HOME=/config \
+	# -v /home/containerConfigs/flood/config:/config \
+	# -v /mnt/plexNAS/torrents:/data \
+	# -p 0.0.0.0:3000:3000 \
+	# jesec/flood \
+	# --port 3000 \
+	# --allowedpath /data
 
 echo "All containers updated!!"
