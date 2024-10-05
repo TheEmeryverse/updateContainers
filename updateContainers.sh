@@ -8,8 +8,8 @@ docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop q
 #uodate all containers
 echo "Updating all containers..."
 docker pull lscr.io/linuxserver/overseerr:latest
-docker pull tautulli/tautulli
-docker pull lscr.io/linuxserver/prowlarr:
+docker pull tautulli/tautulli:latest
+docker pull lscr.io/linuxserver/prowlarr:latest
 docker pull lscr.io/linuxserver/qbittorrent:latest
 docker pull lscr.io/linuxserver/bazarr:latest
 docker pull lscr.io/linuxserver/readarr:develop
@@ -52,7 +52,7 @@ docker run -d \
 	-v /home/containerConfigs/tautulli/config:/config \
 	-e TZ=America/Chicago \
 	-p 8181:8181 \
-tautulli/tautulli
+tautulli/tautulli:latest
 
 echo "Starting bazarr..."
 docker run -d \
