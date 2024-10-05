@@ -12,7 +12,7 @@ docker pull tautulli/tautulli:latest
 docker pull lscr.io/linuxserver/prowlarr:
 docker pull trigus42/qbittorrentvpn:latest
 docker pull lscr.io/linuxserver/bazarr:latest
-docker pull lscr.io/linuxserver/readarr
+docker pull lscr.io/linuxserver/readarr:develop
 docker pull lscr.io/linuxserver/plex:latest
 docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
@@ -94,7 +94,7 @@ docker run -d \
 	-p 8787:8787 \
 	--restart=unless-stopped \
 	--runtime=runc \
-lscr.io/linuxserver/readarr
+lscr.io/linuxserver/readarr:develop
 
 echo "Starting plex..."
 docker run -d \
