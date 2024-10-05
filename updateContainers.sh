@@ -50,7 +50,7 @@ docker run -d \
 	-v /home/containerConfigs/tautulli/config:/config \
 	-e TZ=America/Chicago \
 	-p 8181:8181 \
-tautulli/tautulli:
+tautulli/tautulli:latest
 
 #qBittorrent
 echo "Starting qbittorrent..."
