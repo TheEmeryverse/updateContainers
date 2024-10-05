@@ -23,7 +23,7 @@ docker pull qmcgaw/gluetun:latest
 docker run -d --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
 	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
-	-e WIREGUARD_ENDPOINT_IP= 185.159.157.23 \
+	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
 	-e WIREGUARD_ENDPOINT_PORT=51820 \
 	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
 	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
