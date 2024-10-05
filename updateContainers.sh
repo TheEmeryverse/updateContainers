@@ -66,6 +66,7 @@ docker run -d \
 	-v /home/containerConfigs/qbittorrent/config:/config \
 	-v /mnt/plexNAS/torrents/:/downloads \
 	-p 8080:8080 \
+	-p 8999:8999 \
 	--restart unless-stopped \
 	--cap-add NET_ADMIN \
 	--sysctl net.ipv4.conf.all.src_valid_mark=1 \
