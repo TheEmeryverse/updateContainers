@@ -1,6 +1,6 @@
 # qbittorrent testing
-docker stop qbittorrentTest
-docker rm qbittorrentTest
+docker stop qbittorrentTest; docker stop gluetun
+docker rm qbittorrentTest; docker rm gluetun
 
 
 docker pull lscr.io/linuxserver/qbittorrent
