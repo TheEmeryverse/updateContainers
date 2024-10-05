@@ -48,3 +48,23 @@ docker run \
 # PublicKey = VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY=
 # AllowedIPs = 0.0.0.0/0
 # Endpoint = 185.159.157.23:51820
+
+#qBittorrent
+echo "Starting qbittorrent..."
+docker run -d \
+	--name qbittorrent \
+	# --network=host \
+	-e VPN_TYPE=wireguard \
+	-e WEBUI_PASSWORD=@elLazo4932@ \
+	-e TZ=America/Chicago \
+	-e BIND_INTERFACE=yes \
+	-e HEALTH_CHECK_INTERVAL=900 \
+	-e HEALTH_CHECK_TIMEOUT=900 \
+	-v /home/containerConfigs/qbittorrent/config:/config \
+	-v /mnt/plexNAS/torrents/:/downloads \
+	-p 8080:8080 \
+	-p 8999:8999 \
+	--restart unless-stopped \
+	--cap-add NET_ADMIN \
+	--sysctl net.ipv4.conf.all.src_valid_mark=1 \
+trigus42/qbittorrentvpn:latest

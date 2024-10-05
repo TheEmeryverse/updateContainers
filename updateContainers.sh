@@ -3,19 +3,21 @@
 
 #stop all containers
 echo "Stopping all containers..."
-docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr; docker stop flood
+docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr; docker stop flood; docker stop gluetun
 
 #uodate all containers
 echo "Updating all containers..."
 docker pull lscr.io/linuxserver/overseerr:latest
 docker pull tautulli/tautulli:latest
 docker pull lscr.io/linuxserver/prowlarr:
-docker pull trigus42/qbittorrentvpn:latest
+# docker pull trigus42/qbittorrentvpn:latest
+docker pull lscr.io/linuxserver/qbittorrent:latest
 docker pull lscr.io/linuxserver/bazarr:latest
 docker pull lscr.io/linuxserver/readarr:develop
 docker pull lscr.io/linuxserver/plex:latest
 docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
+docker pull qmcgaw/gluetun:latest
 docker pull jesec/flood:master
 
 echo "Deleting all containers..."
@@ -52,26 +54,6 @@ docker run -d \
 	-e TZ=America/Chicago \
 	-p 8181:8181 \
 tautulli/tautulli:latest
-
-#qBittorrent
-echo "Starting qbittorrent..."
-docker run -d \
-	--name qbittorrent \
-	# --network=host \
-	-e VPN_TYPE=wireguard \
-	-e WEBUI_PASSWORD=@elLazo4932@ \
-	-e TZ=America/Chicago \
-	-e BIND_INTERFACE=yes \
-	-e HEALTH_CHECK_INTERVAL=900 \
-	-e HEALTH_CHECK_TIMEOUT=900 \
-	-v /home/containerConfigs/qbittorrent/config:/config \
-	-v /mnt/plexNAS/torrents/:/downloads \
-	-p 8080:8080 \
-	-p 8999:8999 \
-	--restart unless-stopped \
-	--cap-add NET_ADMIN \
-	--sysctl net.ipv4.conf.all.src_valid_mark=1 \
-trigus42/qbittorrentvpn:latest
 
 echo "Starting bazarr..."
 docker run -d \
@@ -140,6 +122,30 @@ docker run -d \
 	--restart=unless-stopped \
 	--runtime=runc \
 lscr.io/linuxserver/radarr:latest
+
+docker run -d --rm --cap-add=NET_ADMIN \
+	--name=gluetun \
+	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
+	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
+	-e WIREGUARD_ENDPOINT_PORT=51820 \
+	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
+	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
+	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
+	-p 8090:8090 \
+	-p 9050:9050/udp \
+	-p 9050:9050 \
+qmcgaw/gluetun:latest
+
+docker run \
+	--name=qbittorrent \
+	-e TZ=America/Chicago \
+	--network=container:gluetun \
+	-e WEBUI_PASSWORD=@elLazo4932@ \
+	-e WEBUI_PORT=8090 \
+	-v /home/containerConfigs/qbittorrent/config:/config \
+	-v /mnt/plexNAS/torrents:/downloads \
+	--restart=unless-stopped \
+lscr.io/linuxserver/qbittorrent:latest
 
 # flood is still broken!!
 
