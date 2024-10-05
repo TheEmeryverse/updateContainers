@@ -20,6 +20,7 @@ docker pull lscr.io/linuxserver/qbittorrent
 docker run \
 	--name=qbittorrentTest \
 	-e TZ=America/Chicago \
+	--network=container:gluetun \
 	-e WEBUI_PASSWORD=@elLazo4932@ \
 	-e WEBUI_PORT=8090 \
 	-v /home/containerConfigs/qbittorrentTest/config:/config \
