@@ -14,7 +14,7 @@ docker pull trigus42/qbittorrentvpn:latest
 docker pull hotio/bazarr:latest
 docker pull hotio/readarr
 docker pull lscr.io/linuxserver/plex:latest
-docker pull hotio/sonarr:latest
+docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
 
 echo "Deleting all containers..."
@@ -124,7 +124,7 @@ docker run -d \
 	-p 8989:8989 \
 	--restart=unless-stopped \
 	--runtime=runc \
-hotio/sonarr:latest
+lscr.io/linuxserver/sonarr:latest
 
 echo "Starting radarr..."
 docker run -d \
