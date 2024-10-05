@@ -1,4 +1,7 @@
 # qbittorrent testing
+docker stop qbittorrentTest
+docker rm qbittorrentTest
+
 
 docker pull lscr.io/linuxserver/qbittorrent
 
@@ -15,6 +18,8 @@ docker run \
 	--restart=unless-stopped \
 	lscr.io/linuxserver/qbittorrent
 
+docker pull qmcgaw/gluetun
+
 docker run -it --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
 	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
@@ -23,7 +28,7 @@ docker run -it --rm --cap-add=NET_ADMIN \
 	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
 	-e WIREGUARD_PRIVATE_KEY=qKyMq+oLuW3B69+ncluL2QnSUdKYcBM+PkyFMOmjgVw= \
 	-e WIREGUARD_ADDRESSES="10.2.0.2/32" \
-qmcgaw/gluetun
+	qmcgaw/gluetun
 
 # [Interface]
 # Bouncing = 2
