@@ -5,7 +5,7 @@ docker rm qbittorrentTest
 
 docker pull lscr.io/linuxserver/qbittorrent
 
-docker run \
+docker run -d \
 	--name=qbittorrentTest \
 	-e TZ=America/Chicago \
 	-e WEBUI_PASSWORD=password \
@@ -20,7 +20,7 @@ docker run \
 
 docker pull qmcgaw/gluetun:latest
 
-docker run -d --rm --cap-add=NET_ADMIN \
+docker run -it --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
 	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
 	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
