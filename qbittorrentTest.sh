@@ -5,6 +5,7 @@ docker pull lscr.io/linuxserver/qbittorrent
 docker run \
 	--name=qbittorrentTest \
 	-e TZ=America/Chicago \
+	-e WEBUI_PASSWORD=password \
 	-e WEBUI_PORT=8090 \
 	-v /home/containerConfigs/qbittorrentTest/config:/config \
 	-v /mnt/plexNAS/torrents:/downloads \
