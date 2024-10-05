@@ -11,8 +11,8 @@ docker pull lscr.io/linuxserver/overseerr:latest
 docker pull tautulli/tautulli:latest
 docker pull lscr.io/linuxserver/prowlarr:
 docker pull trigus42/qbittorrentvpn:latest
-docker pull hotio/bazarr:latest
-docker pull hotio/readarr
+docker pull lscr.io/linuxserver/bazarr:latest
+docker pull lscr.io/linuxserver/readarr
 docker pull lscr.io/linuxserver/plex:latest
 docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
@@ -81,7 +81,7 @@ docker run -d \
 	-p 6767:6767 \
 	--restart=unless-stopped \
 	--runtime=runc \
-hotio/bazarr:latest
+lscr.io/linuxserver/bazarr:latest
 
 echo "Starting readarr..."
 docker run -d \
@@ -94,7 +94,7 @@ docker run -d \
 	-p 8787:8787 \
 	--restart=unless-stopped \
 	--runtime=runc \
-hotio/readarr
+lscr.io/linuxserver/readarr
 
 echo "Starting plex..."
 docker run -d \
