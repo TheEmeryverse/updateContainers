@@ -3,7 +3,7 @@
 
 #stop all containers
 echo "Stopping all containers..."
-docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr
+docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr; docker stop flood
 
 #uodate all containers
 echo "Updating all containers..."
@@ -16,9 +16,10 @@ docker pull lscr.io/linuxserver/readarr:develop
 docker pull lscr.io/linuxserver/plex:latest
 docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
+docker pull jesec/flood:master
 
 echo "Deleting all containers..."
-docker rm prowlarr; docker rm overseerr; docker rm tautulli; docker rm qbittorrent; docker rm bazarr; docker rm readarr; docker rm plex; docker rm sonarr; docker rm radarr
+docker rm prowlarr; docker rm overseerr; docker rm tautulli; docker rm qbittorrent; docker rm bazarr; docker rm readarr; docker rm plex; docker rm sonarr; docker rm radarr; docker rm flood
 
 echo "All containers successfully deleted..."
 
@@ -137,5 +138,14 @@ docker run -d \
 	--restart=unless-stopped \
 	--runtime=runc \
 lscr.io/linuxserver/radarr:latest
+
+docker run -d \
+	--name=flood \
+	-v /home/containerConfigs/flood/config:/config \
+	-v /home/containerConfigs/flood/data:/data \
+	-p 3000:3000 \
+	-e FLOOD_OPTION_port=3000 \
+	jesec/flood:master \
+	--allowedpath /data
 
 echo "All containers updated!!"
