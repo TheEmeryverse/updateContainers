@@ -3,7 +3,7 @@
 
 #stop all containers
 echo "Stopping all containers..."
-docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr; docker stop flood; docker stop gluetun
+docker stop prowlarr; docker stop overseerr; docker stop tautulli; docker stop qbittorrent; docker stop bazarr; docker stop readarr; docker stop plex; docker stop sonarr; docker stop radarr; docker stop flood; docker stop gluetun; docker stop cloudflare
 
 #uodate all containers
 echo "Updating all containers..."
@@ -18,9 +18,10 @@ docker pull lscr.io/linuxserver/sonarr:latest
 docker pull lscr.io/linuxserver/radarr:latest
 docker pull qmcgaw/gluetun:latest
 docker pull jesec/flood:master
+docker pull cloudflare/cloudflared:latest
 
 echo "Deleting all containers..."
-docker rm prowlarr; docker rm overseerr; docker rm tautulli; docker rm qbittorrent; docker rm bazarr; docker rm readarr; docker rm plex; docker rm sonarr; docker rm radarr; docker rm flood
+docker rm prowlarr; docker rm overseerr; docker rm tautulli; docker rm qbittorrent; docker rm bazarr; docker rm readarr; docker rm plex; docker rm sonarr; docker rm radarr; docker rm flood; docker rm cloudflare
 
 echo "All containers successfully deleted..."
 
@@ -129,7 +130,8 @@ lscr.io/linuxserver/radarr:latest
 echo "Starting gluetun..."
 docker run -d --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
-	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
+	-e VPN_SERVICE_PROVIDER=custom \
+	-e VPN_TYPE=wireguard \
 	-e WIREGUARD_ENDPOINT_IP=185.159.157.23 \
 	-e WIREGUARD_ENDPOINT_PORT=51820 \
 	-e WIREGUARD_PUBLIC_KEY=VNNO5MYorFu1UerHvoXccW6TvotxbJ1GAGJKtzM9HTY= \
@@ -149,6 +151,11 @@ docker run -d \
 	-v /mnt/plexNAS/torrents:/downloads \
 	--restart=unless-stopped \
 lscr.io/linuxserver/qbittorrent:latest
+
+docker run -d \
+	--name=cloudflare \
+	--restart=unless-stopped \
+cloudflare/cloudflared:latest tunnel --no-autoupdate run --token eyJhIjoiNmVmMDM5ZTUxOWI5OGE3N2NhZTY4OTk2NDA2N2E2NGUiLCJ0IjoiM2Y5MzUwZTQtZjVmMC00ZTZmLWJjN2QtMjJmMjc5OWFmOTZmIiwicyI6Ik5tWTVZek0yTURRdE5ERTJZeTAwTXpFMUxXRTJaalV0TURGa1lqRTROVE15TjJRMCJ9
 
 # flood is still broken!!
 
