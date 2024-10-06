@@ -98,6 +98,7 @@ docker run -d \
 	-v /mnt/plexNAS/media/music:/music \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
+	--device=/dev/dri:/dev/dri \
 	--gpus all \
 lscr.io/linuxserver/plex:latest
 
