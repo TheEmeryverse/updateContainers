@@ -99,7 +99,7 @@ docker run -d \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
 	--device=/dev/dri:/dev/dri \
-	--gpus all \
+	--runtime=runc \
 lscr.io/linuxserver/plex:latest
 
 echo "Starting sonarr..."
