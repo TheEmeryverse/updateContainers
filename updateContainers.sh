@@ -100,6 +100,7 @@ docker run -d \
 	--restart unless-stopped \
 	--runtime=nvidia \
 	--device=/dev/dri:/dev/dri \
+	--gpus all \
 lscr.io/linuxserver/plex:latest
 
 echo "Starting sonarr..."
