@@ -86,6 +86,8 @@ docker run -d \
 	--net=host \
 	-e TZ=America/Chicago \
 	-e VERSION=docker \
+	-e NVIDIA_VISIBLE_DEVICES=all \
+	-e NVIDIA_DRIVER_CAPABILITIES=all \
 	-p 32400:32400 \
 	-e PLEX_CLAIM=claim-W_Qx5smRRpWbGziPJu2d \
 	-v /mnt/plexNAS/media/plex_database/config:/config \
@@ -95,6 +97,8 @@ docker run -d \
 	-v /mnt/plexNAS/media/music:/music \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
+	--runtime=nvidia \
+
 lscr.io/linuxserver/plex:latest
 
 echo "Starting sonarr..."
@@ -122,7 +126,7 @@ docker run -d \
 	--runtime=runc \
 lscr.io/linuxserver/radarr:latest
 
-echo "Starting qbittorrent..."
+echo "Starting gluetun..."
 docker run -d --rm --cap-add=NET_ADMIN \
 	--name=gluetun \
 	-e VPN_SERVICE_PROVIDER=custom -e VPN_TYPE=wireguard \
@@ -135,7 +139,7 @@ docker run -d --rm --cap-add=NET_ADMIN \
 	-p 8999:8999 \
 qmcgaw/gluetun:latest
 
-echo "Starting gluetun..."
+echo "Starting qbittorrent..."
 docker run -d \
 	--name=qbittorrent \
 	-e TZ=America/Chicago \
