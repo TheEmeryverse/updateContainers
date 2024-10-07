@@ -97,7 +97,6 @@ docker run -d \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
 	--device=/dev/dri:/dev/dri \
-	--runtime=runc \
 lscr.io/linuxserver/plex:latest
 
 # -e NVIDIA_VISIBLE_DEVICES=all \
