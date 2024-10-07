@@ -96,7 +96,6 @@ docker run -d \
 	-v /mnt/plexNAS/media/music:/music \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
-
 lscr.io/linuxserver/plex:latest
 
 # --device=/dev/dri:/dev/dri \
