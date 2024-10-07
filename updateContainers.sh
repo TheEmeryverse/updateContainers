@@ -96,11 +96,12 @@ docker run -d \
 	-v /mnt/plexNAS/media/music:/music \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
+	--device=/dev/dri:/dev/dri \
+	-e NVIDIA_VISIBLE_DEVICES=all \
+	-e NVIDIA_DRIVER_CAPABILITIES=all \
 lscr.io/linuxserver/plex:latest
 
-# --device=/dev/dri:/dev/dri \
-# -e NVIDIA_VISIBLE_DEVICES=all \
-# -e NVIDIA_DRIVER_CAPABILITIES=all \
+
 
 echo "Starting sonarr..."
 docker run -d \
