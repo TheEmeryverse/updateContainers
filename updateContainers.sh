@@ -87,8 +87,6 @@ docker run -d \
 	--net=host \
 	-e TZ=America/Chicago \
 	-e VERSION=docker \
-	-e NVIDIA_VISIBLE_DEVICES=all \
-	-e NVIDIA_DRIVER_CAPABILITIES=all \
 	-p 32400:32400 \
 	-e PLEX_CLAIM=claim-W_Qx5smRRpWbGziPJu2d \
 	-v /mnt/plexNAS/media/plex_database/config:/config \
@@ -101,6 +99,9 @@ docker run -d \
 	--device=/dev/dri:/dev/dri \
 	--runtime=runc \
 lscr.io/linuxserver/plex:latest
+
+# -e NVIDIA_VISIBLE_DEVICES=all \
+# -e NVIDIA_DRIVER_CAPABILITIES=all \
 
 echo "Starting sonarr..."
 docker run -d \
