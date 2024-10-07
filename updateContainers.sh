@@ -96,9 +96,10 @@ docker run -d \
 	-v /mnt/plexNAS/media/music:/music \
 	-v /tmp:/transcode \
 	--restart unless-stopped \
-	--device=/dev/dri:/dev/dri \
+
 lscr.io/linuxserver/plex:latest
 
+# --device=/dev/dri:/dev/dri \
 # -e NVIDIA_VISIBLE_DEVICES=all \
 # -e NVIDIA_DRIVER_CAPABILITIES=all \
 
@@ -152,6 +153,7 @@ docker run -d \
 	--restart=unless-stopped \
 lscr.io/linuxserver/qbittorrent:latest
 
+echo "Starting coudflare..."
 docker run -d \
 	--name=cloudflare \
 	--restart=unless-stopped \
